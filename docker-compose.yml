@@ -1,4 +1,3 @@
-#настройки для MySQL
 version: '3.7'
 services:
   mysql:
@@ -29,20 +28,3 @@ services:
 
 
 
-#настройки для PostgreSQL
-#version: '3.1'
-#services:
-#  db:
-#    image: postgres:latest
-##    container_name:
-#    ports:
-#      - '5432:5432'
-#    volumes:
-#      - ./data:/var/lib/postgresql
-#    environment:
-#      - POSTGRES_DB=app
-#      - POSTGRES_USER=app
-#      - POSTGRES_PASSWORD=pass
-## для последовательности исполнения
-##    links:
-##      -
