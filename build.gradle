@@ -20,6 +20,9 @@ dependencies {
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
     implementation 'com.github.javafaker:javafaker:1.0.2'
     testImplementation 'io.rest-assured:rest-assured:4.3.3'
+    testImplementation 'org.postgresql:postgresql:42.5.1'
+    testImplementation 'mysql:mysql-connector-java:8.0.28'
+
 
 
 }
