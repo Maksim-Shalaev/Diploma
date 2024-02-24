@@ -14,6 +14,7 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.projectlombok:lombok:1.18.18'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     testImplementation 'com.codeborne:selenide:6.12.2'
@@ -22,12 +23,14 @@ dependencies {
     testImplementation 'io.rest-assured:rest-assured:4.3.3'
     testImplementation 'org.postgresql:postgresql:42.5.1'
     testImplementation 'mysql:mysql-connector-java:8.0.28'
-
-
+    testImplementation 'commons-dbutils:commons-dbutils:1.7'
 
 }
 
 test {
-    useJUnitPlatform()
     systemProperty 'selenide.headless', System.getProperty('selenide.headless')
+    systemProperty 'datasource.url', System.getProperty('datasource.url', 'jdbc:postgresql://localhost:5432/app')
+    systemProperty 'datasource.user', System.getProperty('datasource.user', 'app')
+    systemProperty 'datasource.password', System.getProperty('datasource.password', 'pass')
+    systemProperty 'datasource.page', System.getProperty('datasource.page', 'http://localhost:8080/')
 }
