@@ -57,7 +57,7 @@ public class MainPaymentPage {
     }
 
     public void shouldHaveSuccessNotification() {
-        notification.shouldHave(Condition.text("Операция одобрена банком."), Duration.ofSeconds(15));
+        notification.shouldHave(Condition.text("Операция одобрена Банком."), Duration.ofSeconds(15));
     }
 
     public void shouldHaveNoticeOfRefusal() {
