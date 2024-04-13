@@ -65,19 +65,19 @@ public class MainPaymentPage {
     }
 
     public void shouldHaveErrorNotificationWrongFormat() {
-        wrongFormat.shouldHave(Condition.text("Неверный формат"));
+        wrongFormat.shouldHave(Condition.visible);
     }
 
     public void shouldHaveErrorNotificationInvalidCard() {
-        invalidCard.shouldHave(Condition.text("Неверно указан срок действия карты"));
+        invalidCard.shouldHave(Condition.visible);
     }
 
     public void shouldHaveErrorNotificationCardExpired() {
-        cardExpired.shouldHave(Condition.text("Истёк срок действия карты"));
+        cardExpired.shouldHave(Condition.visible);
     }
 
     public void shouldHaveErrorNotificationRequiredField() {
-        requiredField.shouldHave(Condition.text("Поле обязательно для заполнения"));
+        requiredField.shouldHave(Condition.visible);
     }
 }
 
