@@ -98,6 +98,7 @@ public class CardPaymentTest {
         mainPaymentPage.filloutCardYearField(DataHelper.getYear());
         mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderFullNameEn());
         mainPaymentPage.filloutCardCvvCvcField(DataHelper.getCvcCvv());
+        mainPaymentPage.clickContinueButton();
     }
 
 
