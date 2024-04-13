@@ -12,9 +12,9 @@ public class MainPaymentPage {
 
     private final SelenideElement buyButton = $(byText("Купить"));
     private final SelenideElement buyCreditButton = $(byText("Купить в кредит"));
-    private final SelenideElement cardNumberField = $(".input [placeholder=`0000 0000 0000 0000`]");
-    private final SelenideElement cardMonthField = $(".input [placeholder=`08`]");
-    private final SelenideElement cardYearField = $(".input [placeholder=`22`]");
+    private final SelenideElement cardNumberField = $("[placeholder=`0000 0000 0000 0000`]");
+    private final SelenideElement cardMonthField = $("[placeholder=`08`]");
+    private final SelenideElement cardYearField = $("[placeholder=`22`]");
     private final SelenideElement cardHolderField = $(byText("Владелец")).parent().$(".input__control");
     private final SelenideElement cardCvvCvcField = $(".input [placeholder=`999`]");
     private final SelenideElement continueButton = $(byText("Продолжить"));
