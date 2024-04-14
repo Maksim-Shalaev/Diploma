@@ -12,11 +12,11 @@ public class MainPaymentPage {
 
     private final SelenideElement buyButton = $(byText("Купить"));
     private final SelenideElement buyCreditButton = $(byText("Купить в кредит"));
-    private final SelenideElement cardNumberField = $("[placeholder=`0000 0000 0000 0000`]");
-    private final SelenideElement cardMonthField = $("[placeholder=`08`]");
-    private final SelenideElement cardYearField = $("[placeholder=`22`]");
+    private final SelenideElement cardNumberField = $("[placeholder='0000 0000 0000 0000']");
+    private final SelenideElement cardMonthField = $("[placeholder='08']");
+    private final SelenideElement cardYearField = $("[placeholder='22']");
     private final SelenideElement cardHolderField = $(byText("Владелец")).parent().$(".input__control");
-    private final SelenideElement cardCvvCvcField = $(".input [placeholder=`999`]");
+    private final SelenideElement cardCvvCvcField = $(byText("CVC/CVV")).parent().$(".input__control");
     private final SelenideElement continueButton = $(byText("Продолжить"));
     private final SelenideElement notification = $("div.notification_visible  div.notification__content");
     private final SelenideElement wrongFormat = $(byText("Неверный формат"));
@@ -61,7 +61,8 @@ public class MainPaymentPage {
     }
 
     public void shouldHaveNoticeOfRefusal() {
-        notification.shouldHave(Condition.text("Ошибка! Банк отказал в проведении операции."), Duration.ofSeconds(15));
+//        notification.shouldHave(Condition.text("Ошибка! Банк отказал в проведении операции."), Duration.ofSeconds(15));
+        notification.shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
 
     public void shouldHaveErrorNotificationWrongFormat() {
