@@ -46,22 +46,22 @@ public class SQLHelper {
     @SneakyThrows
     public String getPaymentStatus() {
         var status = "SELECT status FROM payment_entity ORDER BY created DESC";
-        try {
-            return runner.query(conn, status, new ScalarHandler<>());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            return runner.query(conn, status, new ScalarHandler<>());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         return null;
     }
 
     @SneakyThrows
     public String getCreditRequestStatus() {
         var status = "SELECT status FROM credit_request_entity ORDER BY created DESC";
-        try {
-            return runner.query(conn, status, new ScalarHandler<>());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            return runner.query(conn, status, new ScalarHandler<>());
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
         return null;
     }
 }

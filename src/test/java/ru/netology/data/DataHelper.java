@@ -8,7 +8,7 @@ import java.util.Locale;
 
 public class DataHelper {
     public static final String cardNumberApproved = "4444 4444 4444 4441";
-    public static final String cardNumberDeclaned = "4444 4444 4444 4442";
+    public static final String cardNumberDeclined = "4444 4444 4444 4442";
     public static final String cardNumberAllZero = "0000 0000 0000 0000";
     public static final String cardNumberInvalid = "1234!b@a1234%:?*";
     public static final String monthAndYearAllZero = "00";

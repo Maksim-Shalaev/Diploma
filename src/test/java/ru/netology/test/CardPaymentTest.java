@@ -38,7 +38,6 @@ public class CardPaymentTest {
         filloutOtherFieldsByValidData();
         mainPaymentPage.shouldHaveSuccessNotification();
         assertEquals("APPROVED", new SQLHelper().getPaymentStatus());
-
     }
 
 //    @DisplayName("Payment for the tour by credit card, status APPROVED")
@@ -56,7 +55,7 @@ public class CardPaymentTest {
 //    @Test
 //    void shouldBeRefusedByDeclinedDebitCard() {
 //        mainPaymentPage.openCardPaymentPage();
-//        mainPaymentPage.filloutCardNumberField(cardNumberDeclaned);
+//        mainPaymentPage.filloutCardNumberField(cardNumberDeclined);
 //        filloutOtherFieldsByValidData();
 //        mainPaymentPage.shouldHaveNoticeOfRefusal();
 //        assertEquals("DECLINED", new SQLHelper().getPaymentStatus());
@@ -66,7 +65,7 @@ public class CardPaymentTest {
 //    @Test
 //    void shouldBeDRefusedByDeclinedCreditCard() {
 //        mainPaymentPage.openCreditPaymentPage();
-//        mainPaymentPage.filloutCardNumberField(cardNumberDeclaned);
+//        mainPaymentPage.filloutCardNumberField(cardNumberDeclined);
 //        filloutOtherFieldsByValidData();
 //        mainPaymentPage.shouldHaveNoticeOfRefusal();
 //        assertEquals("DECLINED", new SQLHelper().getCreditRequestStatus());
