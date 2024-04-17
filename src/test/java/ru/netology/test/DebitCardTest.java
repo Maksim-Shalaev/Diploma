@@ -1,6 +1,5 @@
 package ru.netology.test;
 
-import lombok.val;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -12,10 +11,11 @@ import ru.netology.page.MainPaymentPage;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static ru.netology.data.DataHelper.*;
+import static ru.netology.data.DataHelper.cardNumberApproved;
+import static ru.netology.data.DataHelper.cardNumberDeclined;
 import static ru.netology.data.SQLHelper.clearTables;
 
-public class CardPaymentTest {
+public class DebitCardTest {
 
     private MainPaymentPage mainPaymentPage;
 
@@ -39,7 +39,7 @@ public class CardPaymentTest {
         mainPaymentPage.shouldHaveSuccessNotification();
         assertEquals("APPROVED", new SQLHelper().getPaymentStatus());
     }
-////
+
     @DisplayName("1.2 Payment for the tour by credit card, status APPROVED")
     @Test
     void shouldBeAllowedByApprovedCreditCard() {

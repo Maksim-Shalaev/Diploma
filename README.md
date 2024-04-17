@@ -10,13 +10,14 @@
 
 
 # Порядок запуска авто-тестов для данного приложения:
-1. Для тестирования БД MySQL в терминале набрать `./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app"`
-2. Для тестирования БД PostgreSQL в терминале набрать `./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"`
+1. Для тестирования БД MySQL- в терминале набрать `./gradlew clean test "-Ddb.url=jdbc:mysql://localhost:3306/app"`
+2. Для тестирования БД PostgreSQL- в терминале набрать `./gradlew clean test "-Ddb.url=jdbc:postgresql://localhost:5432/app"`
+3. Для генерации и просмотра отчета по авто-тестам- в терминале набрать `./ gradlew allureServe`
 
 # Порядок остановки тестируемого приложения:
 
-1. Для остановки сервиса в терминале нажать сочетание клавиш `Ctrl + C`
-2. Для остановки Docker в терминале командой `docker-compose down`
+1. Для остановки сервиса- в терминале нажать сочетание клавиш `Ctrl + C`
+2. Для остановки Docker- в терминале командой `docker-compose down`
 
 ## Предустановленное ПО: ##
 
