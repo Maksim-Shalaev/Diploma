@@ -12,7 +12,7 @@ public class SQLHelper {
     private static final String user = "app";
     private static final String password = "pass";
 
-    private final QueryRunner runner = new QueryRunner();
+    private static final QueryRunner runner = new QueryRunner();
     private final Connection conn = getConnection();
 
     public static Connection getConnection() {
@@ -23,18 +23,32 @@ public class SQLHelper {
         }
     }
 
+//    public static void clearTables() {
+//        var runner = new QueryRunner();
+//        var clearCreditRequestTableQuery = "DELETE FROM credit_request_entity;";
+//        var clearOrderTableQuery = "DELETE FROM order_entity;";
+//        var clearPaymentTableQuery = "DELETE FROM payment_entity;";
+//        try (
+//                var conn = DriverManager.getConnection(
+//                        System.getProperty("db.url"),
+//                        System.getProperty("db.user"),
+//                        System.getProperty("db.pass")
+//                )
+//        ) {
+//            runner.update(conn, clearCreditRequestTableQuery);
+//            runner.update(conn, clearOrderTableQuery);
+//            runner.update(conn, clearPaymentTableQuery);
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public static void clearTables() {
         var runner = new QueryRunner();
         var clearCreditRequestTableQuery = "DELETE FROM credit_request_entity;";
         var clearOrderTableQuery = "DELETE FROM order_entity;";
         var clearPaymentTableQuery = "DELETE FROM payment_entity;";
-        try (
-                var conn = DriverManager.getConnection(
-                        System.getProperty("db.url"),
-                        System.getProperty("db.user"),
-                        System.getProperty("db.pass")
-                )
-        ) {
+        try (var conn = getConnection()) {
             runner.update(conn, clearCreditRequestTableQuery);
             runner.update(conn, clearOrderTableQuery);
             runner.update(conn, clearPaymentTableQuery);
@@ -45,23 +59,31 @@ public class SQLHelper {
 
     @SneakyThrows
     public String getPaymentStatus() {
-        var status = "SELECT status FROM payment_entity ORDER BY created DESC";
-//        try {
+//        var status = "SELECT status FROM payment_entity ORDER BY created DESC";
+        var status = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
+        try {
 //            return runner.query(conn, status, new ScalarHandler<>());
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+            return runner.query(conn, status, new ScalarHandler<>());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
+//    public String getPaymentStatus() {
+//        var status = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
+//        return runner.query(conn, status, new ScalarHandler<>());
+//
+//    }
+
     @SneakyThrows
     public String getCreditRequestStatus() {
-        var status = "SELECT status FROM credit_request_entity ORDER BY created DESC";
-//        try {
-//            return runner.query(conn, status, new ScalarHandler<>());
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        var status = "SELECT status FROM credit_request_entity ORDER BY created DESC LIMIT 1";
+        try {
+            return runner.query(conn, status, new ScalarHandler<>());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

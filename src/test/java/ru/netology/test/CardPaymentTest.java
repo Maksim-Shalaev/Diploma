@@ -30,7 +30,7 @@ public class CardPaymentTest {
         clearTables();
     }
 
-    @DisplayName("Payment for the tour by debit card, status APPROVED")
+    @DisplayName("1.1 Payment for the tour by debit card, status APPROVED")
     @Test
     void shouldBeAllowedByApprovedDebitCard() {
         mainPaymentPage.openCardPaymentPage();
@@ -39,57 +39,57 @@ public class CardPaymentTest {
         mainPaymentPage.shouldHaveSuccessNotification();
         assertEquals("APPROVED", new SQLHelper().getPaymentStatus());
     }
+////
+    @DisplayName("1.2 Payment for the tour by credit card, status APPROVED")
+    @Test
+    void shouldBeAllowedByApprovedCreditCard() {
+        mainPaymentPage.openCreditPaymentPage();
+        mainPaymentPage.filloutCardNumberField(cardNumberApproved);
+        filloutOtherFieldsByValidData();
+        mainPaymentPage.shouldHaveSuccessNotification();
+        assertEquals("APPROVED", new SQLHelper().getCreditRequestStatus());
 
-//    @DisplayName("Payment for the tour by credit card, status APPROVED")
-//    @Test
-//    void shouldBeAllowedByApprovedCreditCard() {
-//        mainPaymentPage.openCreditPaymentPage();
-//        mainPaymentPage.filloutCardNumberField(cardNumberApproved);
-//        filloutOtherFieldsByValidData();
-//        mainPaymentPage.shouldHaveSuccessNotification();
-//        assertEquals("APPROVED", new SQLHelper().getCreditRequestStatus());
-//
-//    }
-//
-//    @DisplayName("Payment for the tour by debit card, status DECLINED")
-//    @Test
-//    void shouldBeRefusedByDeclinedDebitCard() {
-//        mainPaymentPage.openCardPaymentPage();
-//        mainPaymentPage.filloutCardNumberField(cardNumberDeclined);
-//        filloutOtherFieldsByValidData();
-//        mainPaymentPage.shouldHaveNoticeOfRefusal();
-//        assertEquals("DECLINED", new SQLHelper().getPaymentStatus());
-//    }
-//
-//    @DisplayName("Payment for the tour by credit card, status DECLINED")
-//    @Test
-//    void shouldBeDRefusedByDeclinedCreditCard() {
-//        mainPaymentPage.openCreditPaymentPage();
-//        mainPaymentPage.filloutCardNumberField(cardNumberDeclined);
-//        filloutOtherFieldsByValidData();
-//        mainPaymentPage.shouldHaveNoticeOfRefusal();
-//        assertEquals("DECLINED", new SQLHelper().getCreditRequestStatus());
-//    }
-//
-//    @DisplayName("Payment for the tour by debit valid generated card number")
-//    @Test
-//    void shouldBeRefusedByValidCardNumber() {
-//        mainPaymentPage.openCardPaymentPage();
-//        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
-//        filloutOtherFieldsByValidData();
-//        mainPaymentPage.shouldHaveNoticeOfRefusal();
-//        assertNull(new SQLHelper().getPaymentStatus());
-//    }
-//
-//    @DisplayName("Payment for the tour by credit valid generated card number")
-//    @Test
-//    void shouldBeRefusedByValidCreditCardNumber() {
-//        mainPaymentPage.openCreditPaymentPage();
-//        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
-//        filloutOtherFieldsByValidData();
-//        mainPaymentPage.shouldHaveNoticeOfRefusal();
-//        assertNull(new SQLHelper().getCreditRequestStatus());
-//    }
+    }
+
+    @DisplayName("1.3 Payment for the tour by debit card, status DECLINED")
+    @Test
+    void shouldBeRefusedByDeclinedDebitCard() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardNumberField(cardNumberDeclined);
+        filloutOtherFieldsByValidData();
+        mainPaymentPage.shouldHaveNoticeOfRefusal();
+        assertEquals("DECLINED", new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("1.4 Payment for the tour by credit card, status DECLINED")
+    @Test
+    void shouldBeDRefusedByDeclinedCreditCard() {
+        mainPaymentPage.openCreditPaymentPage();
+        mainPaymentPage.filloutCardNumberField(cardNumberDeclined);
+        filloutOtherFieldsByValidData();
+        mainPaymentPage.shouldHaveNoticeOfRefusal();
+        assertEquals("DECLINED", new SQLHelper().getCreditRequestStatus());
+    }
+
+    @DisplayName("1.5 Payment for the tour by debit valid generated card number")
+    @Test
+    void shouldBeRefusedByValidCardNumber() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
+        filloutOtherFieldsByValidData();
+        mainPaymentPage.shouldHaveNoticeOfRefusal();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("1.6 Payment for the tour by credit valid generated card number")
+    @Test
+    void shouldBeRefusedByValidCreditCardNumber() {
+        mainPaymentPage.openCreditPaymentPage();
+        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
+        filloutOtherFieldsByValidData();
+        mainPaymentPage.shouldHaveNoticeOfRefusal();
+        assertNull(new SQLHelper().getCreditRequestStatus());
+    }
 
 
     private void filloutOtherFieldsByValidData() {
