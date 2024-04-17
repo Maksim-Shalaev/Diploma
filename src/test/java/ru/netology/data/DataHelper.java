@@ -21,6 +21,7 @@ public class DataHelper {
     public static final String cvcCvvInvalid = "!Qq";
     public static final String longCvcCvv = "1234";
 
+
     public static String getCardNumberDigits15() {
         Faker faker = new Faker();
         return faker.number().digits(15);

@@ -59,10 +59,9 @@ public class SQLHelper {
 
     @SneakyThrows
     public String getPaymentStatus() {
-//        var status = "SELECT status FROM payment_entity ORDER BY created DESC";
+//       var status = "SELECT status FROM payment_entity ORDER BY created DESC";
         var status = "SELECT status FROM payment_entity ORDER BY created DESC LIMIT 1";
         try {
-//            return runner.query(conn, status, new ScalarHandler<>());
             return runner.query(conn, status, new ScalarHandler<>());
         } catch (SQLException e) {
             e.printStackTrace();
