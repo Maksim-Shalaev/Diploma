@@ -57,6 +57,11 @@ public class DataHelper {
         return year;
     }
 
+    public static String getLastYear() {
+//        String lastYear = LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
+        return LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy"));
+    }
+
     public static String getFullYear() {
         String fullYear = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy"));
         return fullYear;
@@ -96,4 +101,5 @@ public class DataHelper {
         Faker faker = new Faker();
         return faker.number().digits(3);
     }
+
 }

@@ -10,8 +10,7 @@ import ru.netology.page.MainPaymentPage;
 import static com.codeborne.selenide.Selenide.open;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
-import static ru.netology.data.DataHelper.cardNumberApproved;
-import static ru.netology.data.DataHelper.cardNumberDeclined;
+import static ru.netology.data.DataHelper.*;
 import static ru.netology.data.SQLHelper.clearTables;
 
 public class DebitCardTest {
@@ -38,7 +37,7 @@ public class DebitCardTest {
         clearTables();
     }
 
-    @DisplayName("1.1 Payment for the tour by debit card, status APPROVED")
+    @DisplayName("1 Payment for the tour by debit card, status APPROVED")
     @Test
     void shouldBeAllowedByApprovedDebitCard() {
         mainPaymentPage.openCardPaymentPage();
@@ -48,7 +47,7 @@ public class DebitCardTest {
         assertEquals("APPROVED", new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("1.2 Payment for the tour by debit card, status DECLINED")
+    @DisplayName("2 Payment for the tour by debit card, status DECLINED")
     @Test
     void shouldBeRefusedByDeclinedDebitCard() {
         mainPaymentPage.openCardPaymentPage();
@@ -58,7 +57,7 @@ public class DebitCardTest {
         assertEquals("DECLINED", new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("1.3 Payment for the tour by debit valid generated card number")
+    @DisplayName("3 Payment for the tour by debit valid generated card number")
     @Test
     void shouldBeRefusedByValidCardNumber() {
         mainPaymentPage.openCardPaymentPage();
@@ -68,7 +67,7 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("1.4 Payment for the tour by debit card with short number")
+    @DisplayName("4 Payment for the tour by debit card with short number")
     @Test
     void shouldBeErrorNotificationForShortCardNumber() {
         mainPaymentPage.openCardPaymentPage();
@@ -78,7 +77,7 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("1.5 Payment for the tour by debit card with long number")
+    @DisplayName("5 Payment for the tour by debit card with long number")
     @Test
     void shouldBeErrorNotificationForLongCardNumber() {
         mainPaymentPage.openCardPaymentPage();
@@ -88,7 +87,7 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("1.6 Payment for the tour by debit card with an empty input field")
+    @DisplayName("6 Payment for the tour by debit card with an empty input field")
     @Test
     void shouldBeErrorNotificationWhenCardFieldIsEmpty() {
         mainPaymentPage.openCardPaymentPage();
@@ -98,7 +97,7 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("1.7 Payment for the tour by debit card with all zero in input field")
+    @DisplayName("7 Payment for the tour by debit card with all zero in input field")
     @Test
     void shouldBeErrorNotificationWhenAllZero() {
         mainPaymentPage.openCardPaymentPage();
@@ -108,7 +107,7 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("1.8 Payment for the tour by debit card with invalid number")
+    @DisplayName("8 Payment for the tour by debit card with invalid number")
     @Test
     void shouldBeErrorNotificationWhenInvalidCardNumber() {
         mainPaymentPage.openCardPaymentPage();
@@ -118,7 +117,7 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("1.9 Payment for the tour by debit card with short month validity period")
+    @DisplayName("9 Payment for the tour by debit card with short month validity period")
     @Test
     void shouldBeErrorNotificationWhenMonthPeriodIsShort() {
         mainPaymentPage.openCardPaymentPage();
@@ -128,7 +127,7 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("2.0 Payment for the tour by debit card with empty month validity period")
+    @DisplayName("10 Payment for the tour by debit card with empty month validity period")
     @Test
     void shouldBeErrorNotificationWhenMonthPeriodIsEmpty() {
         mainPaymentPage.openCardPaymentPage();
@@ -138,7 +137,7 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("2.1 Payment for the tour by debit card with empty zero period")
+    @DisplayName("11 Payment for the tour by debit card with zero month period")
     @Test
     void shouldBeErrorNotificationWhenMonthPeriodIsZero() {
         mainPaymentPage.openCardPaymentPage();
@@ -148,7 +147,7 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("2.2 Payment for the tour by debit card with non-existen period")
+    @DisplayName("12 Payment for the tour by debit card with non-existen month period")
     @Test
     void shouldBeErrorNotificationWhenMonthPeriodIsNonExisten() {
         mainPaymentPage.openCardPaymentPage();
@@ -158,7 +157,7 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("2.3 Payment for the tour by debit card with invalid period")
+    @DisplayName("13 Payment for the tour by debit card with invalid month period")
     @Test
     void shouldBeErrorNotificationWhenMonthPeriodIsInvalid() {
         mainPaymentPage.openCardPaymentPage();
@@ -168,9 +167,9 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
-    @DisplayName("2.4 Payment for the tour by debit card with long month validity period")
+    @DisplayName("14 Payment for the tour by debit card with long month validity period")
     @Test
-    void shouldBeErrorNotificationWhenMonthPeriodIsLongrt() {
+    void shouldBeErrorNotificationWhenMonthPeriodIsLong() {
         mainPaymentPage.openCardPaymentPage();
         mainPaymentPage.filloutCardMonthField(DataHelper.getTwoNumbers());
         filloutOtherFieldsByValidDataForMonthCheck();
@@ -178,6 +177,185 @@ public class DebitCardTest {
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
+    @DisplayName("15 Payment for the tour by debit card with short year validity period")
+    @Test
+    void shouldBeErrorNotificationWhenYearPeriodIsShort() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardYearField(getOneNumber());
+        filloutOtherFieldsByValidDataForYearCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("16 Payment for the tour by debit card with empty year validity period")
+    @Test
+    void shouldBeErrorNotificationWhenYearPeriodIsEmpty() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardYearField("");
+        filloutOtherFieldsByValidDataForYearCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("17 Payment for the tour by debit card with zero year period")
+    @Test
+    void shouldBeErrorNotificationWhenYearPeriodIsZero() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardYearField(DataHelper.monthAndYearAllZero);
+        filloutOtherFieldsByValidDataForYearCheck();
+        mainPaymentPage.shouldHaveErrorNotificationCardExpired();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("18 Payment for the tour by debit card with last year")
+    @Test
+    void shouldBeErrorNotificationWhenLastYear() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardYearField(DataHelper.getLastYear());
+        filloutOtherFieldsByValidDataForYearCheck();
+        mainPaymentPage.shouldHaveErrorNotificationCardExpired();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("19 Payment for the tour by debit card with invalid year period")
+    @Test
+    void shouldBeErrorNotificationWhenYearPeriodIsInvalid() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardYearField(yearInvalid);
+        filloutOtherFieldsByValidDataForYearCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("20 Payment for the tour by debit card with full year validity period")
+    @Test
+    void shouldBeErrorNotificationWhenFullPeriodIsLong() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardYearField(DataHelper.getFullYear());
+        filloutOtherFieldsByValidDataForYearCheck();
+        mainPaymentPage.shouldHaveErrorNotificationCardExpired();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("21 Payment for the tour by debit card with english letters in name of card holder")
+    @Test
+    void shouldBeErrorNotificationWrongFormatName() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderNameEn());
+        filloutOtherFieldsByValidDataForNameAndSurnameCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("22 Payment for the tour by debit card with english letters in surname of card holder")
+    @Test
+    void shouldBeErrorNotificationWrongFormatSurname() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderSurnameEn());
+        filloutOtherFieldsByValidDataForNameAndSurnameCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("23 Payment for the tour by debit card with russian letters in name of card holder")
+    @Test
+    void shouldBeErrorNotificationWrongFormatNameRu() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderNameRu());
+        filloutOtherFieldsByValidDataForNameAndSurnameCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("24 Payment for the tour by debit card with russian letters in surname of card holder")
+    @Test
+    void shouldBeErrorNotificationWrongFormatSurnameRu() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderSurnameRu());
+        filloutOtherFieldsByValidDataForNameAndSurnameCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("25 Payment for the tour by debit card empty field in name of card holder")
+    @Test
+    void shouldBeErrorNotificationRequiredField() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardHolderField(" ");
+        filloutOtherFieldsByValidDataForNameAndSurnameCheck();
+        mainPaymentPage.shouldHaveErrorNotificationRequiredField();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("26 Payment for the tour by debit card with invalid card holder")
+    @Test
+    void shouldBeErrorNotificationInvalidFormat() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardHolderField(cardHolderInvalid);
+        filloutOtherFieldsByValidDataForNameAndSurnameCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("27 Payment for the tour by debit card with one number of CVC/CVV")
+    @Test
+    void shouldBeErrorNotificationInvalidFormatOfCvcCvv1() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardCvvCvcField(DataHelper.getOneNumber());
+        filloutOtherFieldsByValidDataForCvcCvvCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("28 Payment for the tour by debit card with two numbers of CVC/CVV")
+    @Test
+    void shouldBeErrorNotificationInvalidFormatOfCvcCvv2() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardCvvCvcField(DataHelper.getTwoNumbers());
+        filloutOtherFieldsByValidDataForCvcCvvCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("29 Payment for the tour by debit card with empty CVC/CVV")
+    @Test
+    void shouldBeErrorNotificationInvalidFormatOfEmptyCvcCvv() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardCvvCvcField(" ");
+        filloutOtherFieldsByValidDataForCvcCvvCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("30 Payment for the tour by debit card with all zero CVC/CVV")
+    @Test
+    void shouldBeErrorNotificationInvalidFormatOfAllZero() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardCvvCvcField(cvcCvvAllZero);
+        filloutOtherFieldsByValidDataForCvcCvvCheck();
+        mainPaymentPage.shouldHaveNoticeOfRefusal();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("31 Payment for the tour by debit card with invalid CVC/CVV")
+    @Test
+    void shouldBeErrorNotificationInvalidCvcCvv() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardCvvCvcField(cvcCvvInvalid);
+        filloutOtherFieldsByValidDataForCvcCvvCheck();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
+
+    @DisplayName("32 Payment for the tour by debit card with long CVC/CVV")
+    @Test
+    void shouldBeErrorNotificationInvalidFormatOfLongCvcCvv() {
+        mainPaymentPage.openCardPaymentPage();
+        mainPaymentPage.filloutCardCvvCvcField(longCvcCvv);
+        filloutOtherFieldsByValidDataForCvcCvvCheck();
+        mainPaymentPage.shouldHaveNoticeOfRefusal();
+        assertNull(new SQLHelper().getPaymentStatus());
+    }
 
     private void filloutOtherFieldsByValidDataForCardCheck() {
         mainPaymentPage.filloutCardMonthField(DataHelper.getCurrentMonth());
@@ -194,6 +372,33 @@ public class DebitCardTest {
         mainPaymentPage.filloutCardCvvCvcField(DataHelper.getCvcCvv());
         mainPaymentPage.clickContinueButton();
     }
+
+    private void filloutOtherFieldsByValidDataForYearCheck() {
+        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
+        mainPaymentPage.filloutCardMonthField(DataHelper.getCurrentMonth());
+        mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderFullNameEn());
+        mainPaymentPage.filloutCardCvvCvcField(DataHelper.getCvcCvv());
+        mainPaymentPage.clickContinueButton();
+    }
+
+    private void filloutOtherFieldsByValidDataForNameAndSurnameCheck() {
+        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
+        mainPaymentPage.filloutCardMonthField(DataHelper.getCurrentMonth());
+        mainPaymentPage.filloutCardYearField(DataHelper.getYear());
+        mainPaymentPage.filloutCardCvvCvcField(DataHelper.getCvcCvv());
+        mainPaymentPage.clickContinueButton();
+    }
+
+    private void filloutOtherFieldsByValidDataForCvcCvvCheck() {
+        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
+        mainPaymentPage.filloutCardMonthField(DataHelper.getCurrentMonth());
+        mainPaymentPage.filloutCardYearField(DataHelper.getYear());
+        mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderFullNameEn());
+        mainPaymentPage.clickContinueButton();
+    }
+
+
+
 
 
 }

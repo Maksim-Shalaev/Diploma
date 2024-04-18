@@ -80,6 +80,7 @@ public class MainPaymentPage {
     public void shouldHaveErrorNotificationRequiredField() {
         requiredField.shouldHave(Condition.visible);
     }
+
 }
 
 
