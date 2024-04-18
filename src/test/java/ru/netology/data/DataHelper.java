@@ -14,7 +14,7 @@ public class DataHelper {
     public static final String monthAndYearAllZero = "00";
     public static final String extraMonth = "13";
     public static final String monthInvalid = "!q";
-    public static final String longMonthValue = "111";
+    public static final String longMonth = "321";
     public static final String yearInvalid = "!q";
     public static final String cardHolderInvalid = "T@12n3M";
     public static final String cvcCvvAllZero = "000";
@@ -58,7 +58,6 @@ public class DataHelper {
     }
 
     public static String getLastYear() {
-//        String lastYear = LocalDate.now().format(DateTimeFormatter.ofPattern("yy"));
         return LocalDate.now().minusYears(1).format(DateTimeFormatter.ofPattern("yy"));
     }
 

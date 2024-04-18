@@ -171,7 +171,7 @@ public class DebitCardTest {
     @Test
     void shouldBeErrorNotificationWhenMonthPeriodIsLong() {
         mainPaymentPage.openCardPaymentPage();
-        mainPaymentPage.filloutCardMonthField(DataHelper.getTwoNumbers());
+        mainPaymentPage.filloutCardMonthField(longMonth);
         filloutOtherFieldsByValidDataForMonthCheck();
         mainPaymentPage.shouldHaveErrorNotificationInvalidCard();
         assertNull(new SQLHelper().getPaymentStatus());
