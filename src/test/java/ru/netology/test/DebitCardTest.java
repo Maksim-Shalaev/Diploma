@@ -396,9 +396,4 @@ public class DebitCardTest {
         mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderFullNameEn());
         mainPaymentPage.clickContinueButton();
     }
-
-
-
-
-
 }
