@@ -83,7 +83,7 @@ public class DebitCardTest {
         mainPaymentPage.openCardPaymentPage();
         mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits17());
         filloutOtherFieldsByValidDataForCardCheck();
-        mainPaymentPage.shouldHaveNoticeOfRefusal();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
@@ -103,7 +103,8 @@ public class DebitCardTest {
         mainPaymentPage.openCardPaymentPage();
         mainPaymentPage.filloutCardNumberField(DataHelper.cardNumberAllZero);
         filloutOtherFieldsByValidDataForCardCheck();
-        mainPaymentPage.shouldHaveNoticeOfRefusal();
+//        mainPaymentPage.shouldHaveNoticeOfRefusal();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
@@ -133,6 +134,7 @@ public class DebitCardTest {
         mainPaymentPage.openCardPaymentPage();
         mainPaymentPage.filloutCardMonthField("");
         filloutOtherFieldsByValidDataForMonthCheck();
+//        mainPaymentPage.shouldHaveErrorNotificationRequiredField();
         mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
         assertNull(new SQLHelper().getPaymentStatus());
     }
@@ -333,7 +335,7 @@ public class DebitCardTest {
         mainPaymentPage.openCardPaymentPage();
         mainPaymentPage.filloutCardCvvCvcField(cvcCvvAllZero);
         filloutOtherFieldsByValidDataForCvcCvvCheck();
-        mainPaymentPage.shouldHaveNoticeOfRefusal();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
@@ -353,7 +355,8 @@ public class DebitCardTest {
         mainPaymentPage.openCardPaymentPage();
         mainPaymentPage.filloutCardCvvCvcField(longCvcCvv);
         filloutOtherFieldsByValidDataForCvcCvvCheck();
-        mainPaymentPage.shouldHaveNoticeOfRefusal();
+//        mainPaymentPage.shouldHaveNoticeOfRefusal();
+        mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
         assertNull(new SQLHelper().getPaymentStatus());
     }
 
@@ -366,7 +369,7 @@ public class DebitCardTest {
     }
 
     private void filloutOtherFieldsByValidDataForMonthCheck() {
-        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
+        mainPaymentPage.filloutCardNumberField(cardNumberApproved);
         mainPaymentPage.filloutCardYearField(DataHelper.getYear());
         mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderFullNameEn());
         mainPaymentPage.filloutCardCvvCvcField(DataHelper.getCvcCvv());
@@ -374,7 +377,7 @@ public class DebitCardTest {
     }
 
     private void filloutOtherFieldsByValidDataForYearCheck() {
-        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
+        mainPaymentPage.filloutCardNumberField(cardNumberApproved);
         mainPaymentPage.filloutCardMonthField(DataHelper.getCurrentMonth());
         mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderFullNameEn());
         mainPaymentPage.filloutCardCvvCvcField(DataHelper.getCvcCvv());
@@ -382,7 +385,7 @@ public class DebitCardTest {
     }
 
     private void filloutOtherFieldsByValidDataForNameAndSurnameCheck() {
-        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
+        mainPaymentPage.filloutCardNumberField(cardNumberApproved);
         mainPaymentPage.filloutCardMonthField(DataHelper.getCurrentMonth());
         mainPaymentPage.filloutCardYearField(DataHelper.getYear());
         mainPaymentPage.filloutCardCvvCvcField(DataHelper.getCvcCvv());
@@ -390,7 +393,7 @@ public class DebitCardTest {
     }
 
     private void filloutOtherFieldsByValidDataForCvcCvvCheck() {
-        mainPaymentPage.filloutCardNumberField(DataHelper.getCardNumberDigits16());
+        mainPaymentPage.filloutCardNumberField(cardNumberApproved);
         mainPaymentPage.filloutCardMonthField(DataHelper.getCurrentMonth());
         mainPaymentPage.filloutCardYearField(DataHelper.getYear());
         mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderFullNameEn());

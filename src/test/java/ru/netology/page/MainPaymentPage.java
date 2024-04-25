@@ -23,6 +23,7 @@ public class MainPaymentPage {
     private final SelenideElement invalidCard = $(byText("Неверно указан срок действия карты"));
     private final SelenideElement cardExpired = $(byText("Истёк срок действия карты"));
     private final SelenideElement requiredField = $(byText("Поле обязательно для заполнения"));
+    private final SelenideElement refusal = $(".notification_status_error");
 
     public void openCardPaymentPage() {
         buyButton.click();
@@ -62,7 +63,7 @@ public class MainPaymentPage {
 
     public void shouldHaveNoticeOfRefusal() {
 //        notification.shouldHave(Condition.text("Ошибка! Банк отказал в проведении операции."), Duration.ofSeconds(15));
-        notification.shouldBe(Condition.visible, Duration.ofSeconds(15));
+        refusal.shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
 
     public void shouldHaveErrorNotificationWrongFormat() {
