@@ -389,7 +389,7 @@ public class CreditCardTest {
     }
 
     private void filloutOtherFieldsByValidDataForCvcCvvCheck() {
-        mainPaymentPage.filloutCardNumberField(cardNumberDeclined);
+        mainPaymentPage.filloutCardNumberField(cardNumberApproved);
         mainPaymentPage.filloutCardMonthField(DataHelper.getCurrentMonth());
         mainPaymentPage.filloutCardYearField(DataHelper.getYear());
         mainPaymentPage.filloutCardHolderField(DataHelper.cardHolderFullNameEn());
