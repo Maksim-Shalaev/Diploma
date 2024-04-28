@@ -62,7 +62,6 @@ public class MainPaymentPage {
     }
 
     public void shouldHaveNoticeOfRefusal() {
-//        notification.shouldHave(Condition.text("Ошибка! Банк отказал в проведении операции."), Duration.ofSeconds(15));
         refusal.shouldBe(Condition.visible, Duration.ofSeconds(15));
     }
 

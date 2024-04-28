@@ -100,5 +100,4 @@ public class DataHelper {
         Faker faker = new Faker();
         return faker.number().digits(3);
     }
-
 }

@@ -103,7 +103,6 @@ public class DebitCardTest {
         mainPaymentPage.openCardPaymentPage();
         mainPaymentPage.filloutCardNumberField(DataHelper.cardNumberAllZero);
         filloutOtherFieldsByValidDataForCardCheck();
-//        mainPaymentPage.shouldHaveNoticeOfRefusal();
         mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
         assertNull(new SQLHelper().getPaymentStatus());
     }
@@ -134,7 +133,6 @@ public class DebitCardTest {
         mainPaymentPage.openCardPaymentPage();
         mainPaymentPage.filloutCardMonthField("");
         filloutOtherFieldsByValidDataForMonthCheck();
-//        mainPaymentPage.shouldHaveErrorNotificationRequiredField();
         mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
         assertNull(new SQLHelper().getPaymentStatus());
     }
@@ -355,7 +353,6 @@ public class DebitCardTest {
         mainPaymentPage.openCardPaymentPage();
         mainPaymentPage.filloutCardCvvCvcField(longCvcCvv);
         filloutOtherFieldsByValidDataForCvcCvvCheck();
-//        mainPaymentPage.shouldHaveNoticeOfRefusal();
         mainPaymentPage.shouldHaveErrorNotificationWrongFormat();
         assertNull(new SQLHelper().getPaymentStatus());
     }
